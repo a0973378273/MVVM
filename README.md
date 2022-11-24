@@ -1,6 +1,7 @@
 # mvvm
 reference : https://developer.android.com/jetpack/guide/data-layer
-- LiveData
+- LiveData (Service、Actvitiy、Fragment)
+- Push (FCM)
 - Flow
 - Coroutine
 - Retrofit
