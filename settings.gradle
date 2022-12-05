@@ -1,0 +1,33 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+initProperties()
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven{
+            url(gradle.ext.githubUrl)
+            credentials {
+                username = gradle.ext.githubUserName
+                password = gradle.ext.githubPassword
+            }
+        }
+    }
+}
+def initProperties(){
+    String fileName = "keystore.properties"
+    Properties properties = new Properties()
+    File proFile = new File(rootDir.getAbsolutePath(), fileName)
+    properties.load(proFile.newReader("utf-8"))
+    gradle.ext.githubUrl = properties.getProperty("githubUrl")
+    gradle.ext.githubUserName = properties.getProperty("githubUserName")
+    gradle.ext.githubPassword = properties.getProperty("githubPassword")
+}
+rootProject.name = "MVVM"
+include ':app'
