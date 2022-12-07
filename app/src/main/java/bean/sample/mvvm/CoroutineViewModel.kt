@@ -84,4 +84,15 @@ class CoroutineViewModel : ViewModel() {
         println("deferred await run: ${deferred.await()}" )
         println("deferred await end")
     }
+
+    fun runBlocking() = runBlocking {
+        println("runBlocking start ${Thread.currentThread()}")
+        launch {
+            println("launch in runBlocking ${Thread.currentThread()}")
+        }
+        async {
+            println("async in runBlocking  ${Thread.currentThread()}")
+        }
+        println("runBlocking end ${Thread.currentThread()}")
+    }
 }
