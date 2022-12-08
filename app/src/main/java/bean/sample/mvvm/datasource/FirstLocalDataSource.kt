@@ -1,4 +1,4 @@
-package bean.sample.mvvm
+package bean.sample.mvvm.datasource
 
 import javax.inject.Inject
 

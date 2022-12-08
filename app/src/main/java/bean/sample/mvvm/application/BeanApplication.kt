@@ -1,4 +1,4 @@
-package bean.sample.mvvm
+package bean.sample.mvvm.application
 
 import android.app.Application
 import dagger.Provides

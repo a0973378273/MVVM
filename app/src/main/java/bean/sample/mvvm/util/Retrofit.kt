@@ -1,5 +1,6 @@
-package bean.sample.mvvm
+package bean.sample.mvvm.util
 
+import bean.sample.mvvm.BuildConfig
 import priv.jb.base.util.BaseRetrofitClient
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -11,7 +12,7 @@ class Retrofit @Inject constructor() : BaseRetrofitClient() {
             return if (BuildConfig.DEBUG)
                 "https://jsonplaceholder.typicode.com"
             else
-                "https://jsonplaceholder.typicode.com/debug"
+                "https://jsonplaceholder.typicode.com"
         }
 
     override fun setBaseUrl(): String = domain
