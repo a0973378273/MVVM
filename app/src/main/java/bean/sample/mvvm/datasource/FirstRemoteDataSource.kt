@@ -7,5 +7,4 @@ class FirstRemoteDataSource @Inject constructor(private val api: Api) {
 
     suspend fun getTodos() = api.getTodos()
 
-
 }
