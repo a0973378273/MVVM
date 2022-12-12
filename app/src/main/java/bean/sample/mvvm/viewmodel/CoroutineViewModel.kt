@@ -1,4 +1,4 @@
-package bean.sample.mvvm
+package bean.sample.mvvm.viewmodel
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
