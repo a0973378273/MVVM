@@ -1,6 +1,6 @@
 # mvvm
 reference : https://developer.android.com/jetpack/guide/data-layer
-- LiveData (Service、Actvitiy、Fragment)
+- LiveData (Actvitiy、Fragment)
 - Push (FCM)
 - Flow
 - Coroutine
@@ -8,3 +8,4 @@ reference : https://developer.android.com/jetpack/guide/data-layer
 - Room
 - WorkManager
 - Test
+- Service、Broadcast
