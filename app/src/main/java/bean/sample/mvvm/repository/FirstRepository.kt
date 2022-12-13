@@ -21,7 +21,14 @@ class FirstRepository @Inject constructor() : BaseRepository() {
     @Inject
     lateinit var firstRemoteDataSource: FirstRemoteDataSource
 
-    suspend fun getTodosData() = getDataStatusFlow1 { firstRemoteDataSource.getTodos() }
+    suspend fun getTodosData() = flow {
+        firstRemoteDataSource.getTodos()
+            .catch {
+                emit(DataStatus.Error(it.hashCode(), it.message))
+            }.collect{
+                emit(DataStatus.Finish(it))
+            }
+    }
 
     suspend fun setRoomData() {
         firstLocalDataSource.insert(
@@ -39,8 +46,11 @@ class FirstRepository @Inject constructor() : BaseRepository() {
     // case : 資料庫超過一段時間更新網路資料
     // case : 網路來源
 
+
+
     suspend fun <T> getDataStatusFlow1(action: suspend () -> Response<T>): Flow<DataStatus<T>> =
         flow {
+
             emit(DataStatus.Connect(true))
             action().apply {
                 if (isSuccessful) {
@@ -55,5 +65,24 @@ class FirstRepository @Inject constructor() : BaseRepository() {
         }.catch {
             emit(DataStatus.Connect(false))
             emit(DataStatus.Error(it.hashCode(), it.message))
+        }.flowOn(Dispatchers.IO)
+
+    suspend fun <T> getFlow(action: suspend () -> T): Flow<T> =
+        flow {
+            emit(action())
+//            action().apply {
+//
+//            }
+//
+//
+//            Log.d("test","123:${            action().isSuccessful}")
+//
+//            action().apply {
+//                if (isSuccessful) {
+//                    emit(body()!!)
+//                } else {
+//                    throw Exception(message())
+//                }
+//            }
         }.flowOn(Dispatchers.IO)
 }
