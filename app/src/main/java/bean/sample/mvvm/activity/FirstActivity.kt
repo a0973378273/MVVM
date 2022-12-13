@@ -16,7 +16,10 @@ class FirstActivity : BaseActivity<ActivityMainBinding>() {
     lateinit var sharedPreferences: SharedPreferences
 
     override fun init() {
-        firstViewModel.updateTodosData()
+//        firstViewModel.updateTodosData()
+        firstViewModel.getDB()
+//        firstViewModel.setDB()
+//        firstViewModel.getDB()
     }
 
     override fun initAction() {

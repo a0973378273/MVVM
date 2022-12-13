@@ -1,10 +1,12 @@
 package bean.sample.mvvm.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import bean.sample.mvvm.data.TodosData
 import bean.sample.mvvm.repository.FirstRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import priv.jb.base.basic.BaseViewModel
 import priv.jb.base.data.DataStatus
@@ -34,4 +36,7 @@ class FirstViewModel @Inject constructor(private val firstRepository: FirstRepos
             }
         }
     }
+
+    fun setDB() = viewModelScope.launch(Dispatchers.IO) {firstRepository.setRoomData()}
+    fun getDB() = viewModelScope.launch(Dispatchers.IO) {firstRepository.getRoomData()}
 }
