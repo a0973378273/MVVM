@@ -8,9 +8,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import priv.jb.base.basic.BaseRepository
 import priv.jb.base.data.DataStatus
-import retrofit2.Response
 import javax.inject.Inject
 
+/**
+ * return Flow<DataStatus<Data>> to ViewModel
+ */
 class FirstRepository @Inject constructor() : BaseRepository() {
     @Inject
     lateinit var firstLocalDataSource: FirstLocalDataSource
@@ -18,7 +20,7 @@ class FirstRepository @Inject constructor() : BaseRepository() {
     @Inject
     lateinit var firstRemoteDataSource: FirstRemoteDataSource
 
-    suspend fun getTodosData() = firstRemoteDataSource.getTodos().getDataStatusFlow()
+    suspend fun getTodosData() = getDataStatusFlow1{firstRemoteDataSource.getTodos()}
 
     suspend fun setRoomData() {
         firstLocalDataSource.insert(
@@ -45,41 +47,17 @@ class FirstRepository @Inject constructor() : BaseRepository() {
             emit(DataStatus.Error(it.hashCode(), it.message))
         }.flowOn(Dispatchers.IO)
 
-    suspend fun <T> getDataStatusFlow1(action: suspend () -> Response<T>): Flow<DataStatus<T>> =
+    suspend fun <T> getDataStatusFlow1(action: suspend () -> Flow<T>): Flow<DataStatus<T>> =
         flow {
-
             emit(DataStatus.Connect(true))
             action().apply {
-                if (isSuccessful) {
                     //TODO handle response status code
                     emit(DataStatus.Connect(false))
-                    emit(DataStatus.Finish<T>(body()!!))
-                } else {
-                    emit(DataStatus.Connect(false))
-                    emit(DataStatus.Error(code(), message()))
-                }
+                    emit(DataStatus.Finish(single()))
             }
         }.catch {
             emit(DataStatus.Connect(false))
             emit(DataStatus.Error(it.hashCode(), it.message))
         }.flowOn(Dispatchers.IO)
 
-    suspend fun <T> getFlow(action: suspend () -> T): Flow<T> =
-        flow {
-            emit(action())
-//            action().apply {
-//
-//            }
-//
-//
-//            Log.d("test","123:${            action().isSuccessful}")
-//
-//            action().apply {
-//                if (isSuccessful) {
-//                    emit(body()!!)
-//                } else {
-//                    throw Exception(message())
-//                }
-//            }
-        }.flowOn(Dispatchers.IO)
 }

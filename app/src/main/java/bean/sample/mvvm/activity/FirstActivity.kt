@@ -23,7 +23,7 @@ class FirstActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun initAction() {
-        firstViewModel.todosDataLiveData().observe(this) { /*show data*/ }
+        firstViewModel.todosDataLiveData.observe(this) { /*show data*/ }
         firstViewModel.errorLivedata.observe(this) { /*show error dialog*/ }
         firstViewModel.loadingLiveData.observe(this) {
             if (it) {

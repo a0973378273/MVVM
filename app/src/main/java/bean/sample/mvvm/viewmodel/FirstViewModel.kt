@@ -6,13 +6,15 @@ import bean.sample.mvvm.data.TodosData
 import bean.sample.mvvm.repository.FirstRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import priv.jb.base.basic.BaseViewModel
 import priv.jb.base.data.DataStatus
 import priv.jb.base.data.Error
 import javax.inject.Inject
 
+/**
+ * process with DataStatus
+ */
 @HiltViewModel
 class FirstViewModel @Inject constructor(private val firstRepository: FirstRepository) :
     BaseViewModel() {
