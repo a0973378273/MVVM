@@ -16,14 +16,14 @@ class FirstActivity : BaseActivity<ActivityMainBinding>() {
     lateinit var sharedPreferences: SharedPreferences
 
     override fun init() {
-        firstViewModel.updateTodosData()
+//        firstViewModel.updateTodosData()
 //        firstViewModel.getDB()
 //        firstViewModel.setDB()
 //        firstViewModel.getDB()
     }
 
     override fun initAction() {
-        firstViewModel.todosDataLiveData.observe(this) { /*show data*/ }
+        firstViewModel.todosDataLiveData().observe(this) { /*show data*/ }
         firstViewModel.errorLivedata.observe(this) { /*show error dialog*/ }
         firstViewModel.loadingLiveData.observe(this) {
             if (it) {

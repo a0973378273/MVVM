@@ -5,10 +5,7 @@ import bean.sample.mvvm.datasource.FirstLocalDataSource
 import bean.sample.mvvm.datasource.FirstRemoteDataSource
 import bean.sample.mvvm.entity.RoomEntity
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.*
 import priv.jb.base.basic.BaseRepository
 import priv.jb.base.data.DataStatus
 import retrofit2.Response
@@ -21,14 +18,7 @@ class FirstRepository @Inject constructor() : BaseRepository() {
     @Inject
     lateinit var firstRemoteDataSource: FirstRemoteDataSource
 
-    suspend fun getTodosData() = flow {
-        firstRemoteDataSource.getTodos()
-            .catch {
-                emit(DataStatus.Error(it.hashCode(), it.message))
-            }.collect{
-                emit(DataStatus.Finish(it))
-            }
-    }
+    suspend fun getTodosData() = firstRemoteDataSource.getTodos().getDataStatusFlow()
 
     suspend fun setRoomData() {
         firstLocalDataSource.insert(
@@ -46,7 +36,14 @@ class FirstRepository @Inject constructor() : BaseRepository() {
     // case : 資料庫超過一段時間更新網路資料
     // case : 網路來源
 
-
+    suspend fun <T> Flow<T>.getDataStatusFlow(): Flow<DataStatus<T>> =
+        transform {
+            emit(DataStatus.Connect(true))
+            emit(DataStatus.Finish(it))
+        }.catch {
+            emit(DataStatus.Connect(false))
+            emit(DataStatus.Error(it.hashCode(), it.message))
+        }.flowOn(Dispatchers.IO)
 
     suspend fun <T> getDataStatusFlow1(action: suspend () -> Response<T>): Flow<DataStatus<T>> =
         flow {

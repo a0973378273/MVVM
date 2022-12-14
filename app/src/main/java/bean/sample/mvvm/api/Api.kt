@@ -6,6 +6,6 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface Api {
-    @GET("todos/abcd")
+    @GET("todos/1")
     suspend fun getTodos(): TodosData
 }
