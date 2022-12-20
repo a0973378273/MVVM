@@ -25,6 +25,6 @@ interface RoomDao {
     @Update
     suspend fun update(roomEntity: RoomEntity) : Int
 
-    @Query("SELECT * FROM Todos")
+    @Query("SELECT * FROM Todos2")
     suspend fun selectAll() : List<RoomEntity>
 }

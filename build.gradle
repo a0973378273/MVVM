@@ -1,12 +1,26 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
-        lifecycleService = "2.5.1"
+        androidx_version = "1.9.0"
+        androidx_fragment_version = "1.5.4"
+        material_version = "1.7.0"
+        appcompat_version = "1.5.1"
+        constraint_layout_version = "2.1.4"
+        lifecycle_version = "2.5.1"
         hilt_version = "2.44.2"
-        roomVersion = '2.2.5'
+        retrofit_version = "2.9.0"
+        moshi_version = "1.14.0"
+        okhttp_version = "4.9.3"
+        room_version = "2.4.3"
+        google_gms_version = "4.3.13"
+        firebase_version = "31.1.1"
+        firebase_messaging_version = "23.1.0"
     }
     dependencies {
+        //Hilt
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+        //Firebase
+        classpath "com.google.gms:google-services:$google_gms_version"
     }
 }
 

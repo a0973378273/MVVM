@@ -1,9 +1,12 @@
 package bean.sample.mvvm.activity
 
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.activity.viewModels
 import bean.sample.mvvm.databinding.ActivityMainBinding
 import bean.sample.mvvm.viewmodel.FirstViewModel
+import com.google.firebase.FirebaseApp
+import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 import priv.jb.base.basic.BaseActivity
 import javax.inject.Inject
@@ -11,15 +14,15 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class FirstActivity : BaseActivity<ActivityMainBinding>() {
     private val firstViewModel: FirstViewModel by viewModels()
-
     @Inject
     lateinit var sharedPreferences: SharedPreferences
 
     override fun init() {
+
 //        firstViewModel.updateTodosData()
 //        firstViewModel.getDB()
 //        firstViewModel.setDB()
-//        firstViewModel.getDB()
+        firstViewModel.getDB()
     }
 
     override fun initAction() {
