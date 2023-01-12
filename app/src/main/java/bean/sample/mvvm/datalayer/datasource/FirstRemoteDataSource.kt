@@ -1,7 +1,7 @@
-package bean.sample.mvvm.datasource
+package bean.sample.mvvm.datalayer.datasource
 
 import android.util.Log
-import bean.sample.mvvm.api.Api
+import bean.sample.mvvm.datalayer.retrofit.api.Api
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

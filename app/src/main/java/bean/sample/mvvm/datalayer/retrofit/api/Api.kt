@@ -1,6 +1,6 @@
-package bean.sample.mvvm.api
+package bean.sample.mvvm.datalayer.retrofit.api
 
-import bean.sample.mvvm.data.TodosData
+import bean.sample.mvvm.datalayer.data.TodosData
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 import retrofit2.http.GET

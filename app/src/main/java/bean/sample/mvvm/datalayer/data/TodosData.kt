@@ -1,4 +1,4 @@
-package bean.sample.mvvm.data
+package bean.sample.mvvm.datalayer.data
 
 import androidx.annotation.Keep
 

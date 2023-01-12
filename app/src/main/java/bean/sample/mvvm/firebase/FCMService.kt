@@ -1,7 +1,6 @@
-package bean.sample.mvvm
+package bean.sample.mvvm.firebase
 
 import android.util.Log
-import androidx.lifecycle.LifecycleService
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage

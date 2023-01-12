@@ -1,8 +1,8 @@
-package bean.sample.mvvm.dao
+package bean.sample.mvvm.datalayer.room.dao
 
 import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
-import bean.sample.mvvm.entity.RoomEntity
+import bean.sample.mvvm.datalayer.room.entity.RoomEntity
 
 @Dao
 interface RoomDao {

@@ -2,8 +2,8 @@ package bean.sample.mvvm.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import bean.sample.mvvm.data.TodosData
-import bean.sample.mvvm.repository.FirstRepository
+import bean.sample.mvvm.datalayer.data.TodosData
+import bean.sample.mvvm.datalayer.repository.FirstRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

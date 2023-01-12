@@ -1,4 +1,4 @@
-package bean.sample.mvvm.entity
+package bean.sample.mvvm.datalayer.room.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

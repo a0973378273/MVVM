@@ -1,9 +1,9 @@
-package bean.sample.mvvm.repository
+package bean.sample.mvvm.datalayer.repository
 
 import android.util.Log
-import bean.sample.mvvm.datasource.FirstLocalDataSource
-import bean.sample.mvvm.datasource.FirstRemoteDataSource
-import bean.sample.mvvm.entity.RoomEntity
+import bean.sample.mvvm.datalayer.datasource.FirstLocalDataSource
+import bean.sample.mvvm.datalayer.datasource.FirstRemoteDataSource
+import bean.sample.mvvm.datalayer.room.entity.RoomEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import priv.jb.base.basic.BaseRepository

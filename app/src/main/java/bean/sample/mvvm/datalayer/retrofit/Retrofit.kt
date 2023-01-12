@@ -1,9 +1,7 @@
-package bean.sample.mvvm.util
+package bean.sample.mvvm.datalayer.retrofit
 
 import android.content.SharedPreferences
-import android.util.Log
 import bean.sample.mvvm.BuildConfig
-import dagger.hilt.android.qualifiers.ApplicationContext
 import priv.jb.base.util.BaseRetrofitClient
 import javax.inject.Inject
 import javax.inject.Singleton

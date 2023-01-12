@@ -1,11 +1,11 @@
-package bean.sample.mvvm.module
+package bean.sample.mvvm.di.module
 
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
-import bean.sample.mvvm.api.Api
-import bean.sample.mvvm.database.RoomSampleDatabase
-import bean.sample.mvvm.util.Retrofit
+import bean.sample.mvvm.datalayer.retrofit.api.Api
+import bean.sample.mvvm.datalayer.room.database.RoomSampleDatabase
+import bean.sample.mvvm.datalayer.retrofit.Retrofit
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

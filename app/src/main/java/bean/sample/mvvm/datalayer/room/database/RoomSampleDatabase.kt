@@ -1,12 +1,12 @@
-package bean.sample.mvvm.database
+package bean.sample.mvvm.datalayer.room.database
 
 import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.RenameTable
 import androidx.room.RoomDatabase
 import androidx.room.migration.AutoMigrationSpec
-import bean.sample.mvvm.dao.RoomDao
-import bean.sample.mvvm.entity.RoomEntity
+import bean.sample.mvvm.datalayer.room.dao.RoomDao
+import bean.sample.mvvm.datalayer.room.entity.RoomEntity
 
 @Database(
     version = 2, entities = [RoomEntity::class], autoMigrations = [
