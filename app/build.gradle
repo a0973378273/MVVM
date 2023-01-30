@@ -22,6 +22,11 @@ android {
 
     buildTypes {
         debug {
+            testOptions {
+                unitTests.all {
+                    useJUnitPlatform()
+                }
+            }
             minifyEnabled true
             proguardFiles 'proguard-rules.pro'
         }
@@ -87,4 +92,8 @@ dependencies {
     implementation platform("com.google.firebase:firebase-bom:$firebase_version")
     implementation "com.google.firebase:firebase-analytics-ktx"
     implementation "com.google.firebase:firebase-messaging-ktx:$firebase_messaging_version"
+
+    //Test
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5_version"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit5_version"
 }

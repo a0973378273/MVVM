@@ -19,8 +19,8 @@ class Retrofit @Inject constructor(val sharedPreferences: SharedPreferences) : B
     override fun setBaseUrl(): String = domain
 
     override fun setHeader(): Map<String, String>? = HashMap<String,String>().apply {
-        val token = sharedPreferences.getString("token","1")
-        set("token",token!!)
+//        val token = sharedPreferences.getString("token","1")
+//        set("token",token!!)
     }
 
     override fun setShowHttpLogging(): Boolean = BuildConfig.DEBUG

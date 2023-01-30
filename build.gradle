@@ -15,6 +15,7 @@ buildscript {
         google_gms_version = "4.3.13"
         firebase_version = "31.1.1"
         firebase_messaging_version = "23.1.0"
+        junit5_version = "5.9.2"
     }
     dependencies {
         //Hilt
