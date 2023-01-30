@@ -6,6 +6,6 @@ reference : https://developer.android.com/jetpack/guide/data-layer
 - Coroutine
 - Retrofit
 - Room
+- Junit5
 - WorkManager
-- Test
-- Service、Broadcast
+- Service、Broadcast、ContentProvider
