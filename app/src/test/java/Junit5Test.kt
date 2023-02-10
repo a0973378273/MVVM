@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.condition.DisabledIf
+import org.junit.jupiter.api.condition.EnabledIf
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @Tag("tag1")
@@ -18,6 +20,18 @@ class Junit5Test {
     @Disabled
     fun disabled() {
         println("disabled")
+    }
+
+    @Test
+    @EnabledIf("enableIfCondition")
+    fun enableIf() {
+        println("enableIf")
+    }
+
+    @Test
+    @DisabledIf("enableIfCondition")
+    fun disabledIf() {
+        println("disabledIf")
     }
 
     @Test
@@ -40,6 +54,10 @@ class Junit5Test {
     @AfterAll
     fun afterAll() {
         println("afterAll")
+    }
+
+    private fun enableIfCondition(): Boolean {
+        return false
     }
 
 }

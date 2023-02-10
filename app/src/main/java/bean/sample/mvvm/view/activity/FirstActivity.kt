@@ -1,6 +1,9 @@
 package bean.sample.mvvm.view.activity
 
 import android.content.SharedPreferences
+import android.os.Bundle
+import android.os.PersistableBundle
+import android.util.Log
 import androidx.activity.viewModels
 import bean.sample.mvvm.databinding.ActivityMainBinding
 import bean.sample.mvvm.viewmodel.FirstViewModel
