@@ -7,6 +7,7 @@ reference : https://developer.android.com/jetpack/guide/data-layer
 - Retrofit
 - Room
 - Junit5
+- Espresso
 - WorkManager(待)
 - Service、Broadcast、ContentProvider(待)
 - IAP(待)
