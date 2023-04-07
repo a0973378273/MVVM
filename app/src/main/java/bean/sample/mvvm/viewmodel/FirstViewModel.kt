@@ -19,7 +19,7 @@ import javax.inject.Inject
 class FirstViewModel @Inject constructor(private val firstRepository: FirstRepository) :
     BaseViewModel() {
 
-    val todosDataLiveData = MutableLiveData<DataStatus<TodosData>>()
+    val todosDataLiveData = MutableLiveData<TodosData?>()
 
     fun updateTodosData() {
         viewModelScope.launch {
@@ -27,7 +27,7 @@ class FirstViewModel @Inject constructor(private val firstRepository: FirstRepos
                 .collect {
                     when (it) {
                         is DataStatus.Finish -> {
-                            todosDataLiveData.value = it
+                            todosDataLiveData.value = it.data
                         }
                         is DataStatus.Error -> {
                             errorLivedata.value = Error(it.code, it.message)

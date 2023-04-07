@@ -92,6 +92,7 @@ dependencies {
     implementation platform("com.google.firebase:firebase-bom:$firebase_version")
     implementation "com.google.firebase:firebase-analytics-ktx"
     implementation "com.google.firebase:firebase-messaging-ktx:$firebase_messaging_version"
+    implementation "com.google.firebase:firebase-messaging-directboot:$firebase_messaging_directboot_version"
 
     //Test
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5_version"

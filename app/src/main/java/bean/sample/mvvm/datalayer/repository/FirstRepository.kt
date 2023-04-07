@@ -20,7 +20,7 @@ class FirstRepository @Inject constructor() : BaseRepository() {
     @Inject
     lateinit var firstRemoteDataSource: FirstRemoteDataSource
 
-    suspend fun getTodosData() = getDataStatusFlow1{firstRemoteDataSource.getTodos()}
+    suspend fun getTodosData() = getDataStatusFlow1 { firstRemoteDataSource.getTodos() }
 
     suspend fun setRoomData() {
         firstLocalDataSource.insert(
@@ -31,33 +31,46 @@ class FirstRepository @Inject constructor() : BaseRepository() {
     }
 
     suspend fun getRoomData() {
-        Log.d("test","room: ${firstLocalDataSource.selectAll()}")
+        Log.d("test", "room: ${firstLocalDataSource.selectAll()}")
     }
 
     // case : 資料庫沒有打網路來源，然後存在資料庫
     // case : 資料庫超過一段時間更新網路資料
     // case : 網路來源
 
-    suspend fun <T> Flow<T>.getDataStatusFlow(): Flow<DataStatus<T>> =
-        transform {
-            emit(DataStatus.Connect(true))
-            emit(DataStatus.Finish(it))
-        }.catch {
-            emit(DataStatus.Connect(false))
-            emit(DataStatus.Error(it.hashCode(), it.message))
-        }.flowOn(Dispatchers.IO)
+//    suspend fun <T> Flow<T>.getDataStatusFlow(): Flow<DataStatus<T>> =
+//        transform {
+//            emit(DataStatus.Connect(true))
+//            emit(DataStatus.Finish(it))
+//        }.catch {
+//            emit(DataStatus.Connect(false))
+//            emit(DataStatus.Error(it.hashCode(), it.message))
+//        }.flowOn(Dispatchers.IO)
 
-    suspend fun <T> getDataStatusFlow1(action: suspend () -> Flow<T>): Flow<DataStatus<T>> =
+//    suspend fun <T> getDataStatusFlow1(action: suspend () -> Flow<T>): Flow<DataStatus<T>> =
+//        flow {
+//            emit(DataStatus.Connect(true))
+//            action().apply {
+//                    //TODO handle response status code
+//                    emit(DataStatus.Connect(false))
+//                    emit(DataStatus.Finish(single()))
+//            }
+//        }.catch {
+//            emit(DataStatus.Connect(false))
+//            emit(DataStatus.Error(it.hashCode(), it.message))
+//        }.flowOn(Dispatchers.IO)
+
+    suspend fun <T> getDataStatusFlow1(action: suspend () -> T): Flow<DataStatus<T>> =
         flow {
             emit(DataStatus.Connect(true))
             action().apply {
-                    //TODO handle response status code
-                    emit(DataStatus.Connect(false))
-                    emit(DataStatus.Finish(single()))
+                //TODO handle response status code
+                emit(DataStatus.Connect(false))
+                emit(DataStatus.Finish(this))
             }
         }.catch {
             emit(DataStatus.Connect(false))
-            emit(DataStatus.Error(it.hashCode(), it.message))
+            emit(DataStatus.Error(it.hashCode(), it.stackTraceToString()))
         }.flowOn(Dispatchers.IO)
 
 }

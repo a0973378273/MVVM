@@ -1,8 +1,6 @@
 package bean.sample.mvvm.view.activity
 
 import android.content.SharedPreferences
-import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import androidx.activity.viewModels
 import bean.sample.mvvm.databinding.ActivityMainBinding
@@ -13,6 +11,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class FirstActivity : BaseActivity<ActivityMainBinding>() {
+
     private val firstViewModel: FirstViewModel by viewModels()
 
     @Inject
@@ -27,13 +26,21 @@ class FirstActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun initAction() {
-        firstViewModel.todosDataLiveData.observe(this) { /*show data*/ }
-        firstViewModel.errorLivedata.observe(this) { /*show error dialog*/ }
+        firstViewModel.todosDataLiveData.observe(this) {
+            /*show data*/
+            Log.d(localClassName, "todosDataLiveData: $it")
+        }
+        firstViewModel.errorLivedata.observe(this) {
+            /*show error dialog*/
+            Log.d(localClassName, "errorLivedata: $it")
+        }
         firstViewModel.loadingLiveData.observe(this) {
             if (it) {
                 /*show loading*/
+                Log.d(localClassName, "loadingLiveData: $it")
             } else {
                 /* hide loading*/
+                Log.d(localClassName, "loadingLiveData: $it")
             }
         }
 
