@@ -10,10 +10,6 @@ import javax.inject.Inject
 
 class FirstRemoteDataSource @Inject constructor(private val api: Api) {
 
-    suspend fun getTodos() =api.getTodos()
+    suspend fun getTodos() = api.getTodos()
 
-suspend fun <T> getFlow(action: suspend () -> T): Flow<T> =
-    flow {
-        emit(action())
-    }.flowOn(Dispatchers.IO)
 }

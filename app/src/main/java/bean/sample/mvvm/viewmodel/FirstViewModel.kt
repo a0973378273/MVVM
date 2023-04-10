@@ -19,6 +19,13 @@ import javax.inject.Inject
 class FirstViewModel @Inject constructor(private val firstRepository: FirstRepository) :
     BaseViewModel() {
 
+    init {
+        updateTodosData()
+        getDB()
+        setDB()
+        getDB()
+    }
+
     val todosDataLiveData = MutableLiveData<TodosData?>()
 
     fun updateTodosData() {
